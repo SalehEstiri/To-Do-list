@@ -14,3 +14,10 @@ class TestToDoList(unittest.TestCase):
         self.to_do_list.delete("Buy bread")
         self.assertEqual(len(self.to_do_list.tasks), 2)
         self.assertNotIn("Buy bread", [task.name for task in self.to_do_list.tasks])
+
+    def test_show(self):
+        self.to_do_list.show()
+        self.assertEqual(self.to_do_list.tasks[0].name, "Homework")
+        self.assertEqual(self.to_do_list.tasks[1].name, "Buy bread")
+        self.assertEqual(self.to_do_list.tasks[2].name, "Exam")
+      
