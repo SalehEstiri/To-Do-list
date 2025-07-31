@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class Task(BaseModel):
     name: str
-    discription: str
+    description: str
     priority: int
 
 class ToDoList:
@@ -19,6 +19,6 @@ class ToDoList:
         for task in self.tasks:
             print('-------------------------')
             print(f'{task.priority}- {task.name}')
-            print(task.discription)
+            print(task.description)
             print('-------------------------')
     
