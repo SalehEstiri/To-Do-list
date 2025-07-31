@@ -12,3 +12,13 @@ class ToDoList:
 
     def delete(self, name: str):
         self.tasks = [task for task in self.tasks if task.name != name]
+
+    def show(self):
+        #Sorting the tasks by their priority
+        self.tasks.sort(key= lambda task: task.priority)
+        for task in self.tasks:
+            print('-------------------------')
+            print(f'{task.priority}- {task.name}')
+            print(task.discription)
+            print('-------------------------')
+    
