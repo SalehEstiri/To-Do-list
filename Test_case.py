@@ -28,8 +28,8 @@ class TestToDoList(unittest.TestCase):
         df = pd.read_csv('Lists.csv')
         self.assertEqual(len(df), 3)
         self.assertEqual(list(df.columns), ['name', 'description', 'priority'])
-        self.assertTrue("Task1" in df['name'].values)
-        self.assertTrue("First task" in df['description'].values)
+        self.assertTrue("Buy bread" in df['name'].values)
+        self.assertTrue("I don't know" in df['description'].values)
         
     def remove_csv(self):
         if os.path.exists('Lists.csv'):
