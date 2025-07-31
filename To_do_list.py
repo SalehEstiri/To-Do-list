@@ -6,9 +6,9 @@ class Task(pydantic.BaseModel):
     discription: str
     priority: int
 
-class ToDoList(Task):
+class ToDoList:
     def __init__(self, tasks: list[Task]):
         self.tasks = tasks
 
-    def delete(self, name):
-        self.tasks.remove(name)
+    def delete(self, name: str):
+        self.tasks = [task for task in self.tasks if task.name != name]
