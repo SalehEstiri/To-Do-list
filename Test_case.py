@@ -34,3 +34,7 @@ class TestToDoList(unittest.TestCase):
     def remove_csv(self):
         if os.path.exists('Lists.csv'):
             os.remove('Lists.csv')
+
+
+if __name__ == '__main__':
+    unittest.main()

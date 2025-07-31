@@ -26,4 +26,3 @@ class ToDoList:
         task_dict = [task.dict() for task in self.tasks]
         df = pandas.DataFrame(task_dict)
         df.to_csv('Lists.csv', index= False)
-     
