@@ -21,3 +21,16 @@ class TestToDoList(unittest.TestCase):
         self.assertEqual(self.to_do_list.tasks[1].name, "Buy bread")
         self.assertEqual(self.to_do_list.tasks[2].name, "Exam")
       
+    def test_save_to_csv(self):
+        self.to_do_list.save_to_csv()
+        self.assertTrue(os.path.exists('Lists.csv'))
+        
+        df = pd.read_csv('Lists.csv')
+        self.assertEqual(len(df), 3)
+        self.assertEqual(list(df.columns), ['name', 'description', 'priority'])
+        self.assertTrue("Task1" in df['name'].values)
+        self.assertTrue("First task" in df['description'].values)
+        
+    def remove_csv(self):
+        if os.path.exists('Lists.csv'):
+            os.remove('Lists.csv')
