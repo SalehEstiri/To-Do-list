@@ -1,7 +1,7 @@
 import pandas
-import pydantic
+from pydantic import BaseModel
 
-class Task(pydantic.BaseModel):
+class Task(BaseModel):
     name: str
     discription: str
     priority: int
