@@ -1,13 +1,13 @@
 import pandas
 import pydantic
 
-class task(pydantic.BaseModel):
+class Task(pydantic.BaseModel):
     name: str
     discription: str
     priority: int
 
-class ToDoList(task):
-    def __init__(self, tasks: list[task]):
+class ToDoList(Task):
+    def __init__(self, tasks: list[Task]):
         self.tasks = tasks
 
     def delete(self, name):
