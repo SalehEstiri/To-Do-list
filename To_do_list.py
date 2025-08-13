@@ -1,8 +1,7 @@
 import pandas
 import sys
 from pydantic import BaseModel
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QPushButton
-from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout,QHBoxLayout, QPushButton
 
 class Task(BaseModel):
     name: str
@@ -37,29 +36,56 @@ class GUI(QWidget):
         self.setWindowTitle('TO DO LIST')
         self.setGeometry(680, 300, 400, 500)
         
-        #Here are three boxes to get task name, discreption and priority from user.
+        #Here are three boxes to get task name, description and priority from user.
         #name
         name_box = QLineEdit()
         name_box.setPlaceholderText('Task name')
         name_box.setClearButtonEnabled(True)
-        name_box.setFixedSize(QSize(390, 40))
+        name_box.setFixedSize(390, 40)
         #dicreption
-        discreption_box = QLineEdit()
-        discreption_box.setPlaceholderText('Task discription')
-        discreption_box.setClearButtonEnabled(True)
-        discreption_box.setFixedSize(QSize(390, 40))
+        description_box = QLineEdit()
+        description_box.setPlaceholderText('Task discription')
+        description_box.setClearButtonEnabled(True)
+        description_box.setFixedSize(390, 200)
         #priority
         priority_box = QLineEdit()
         priority_box.setPlaceholderText('Task priority')
-        priority_box.setFixedSize(QSize(390, 200))
+        priority_box.setFixedSize(390, 40)
         priority_box.setClearButtonEnabled(True)
         
-        layout = QVBoxLayout()
-        layout.addWidget(name_box)
-        layout.addWidget(discreption_box)
-        layout.addWidget(priority_box)
-        layout.addStretch()
-        self.setLayout(layout)
+        #Here are three buttons to save, delete, save as csv.
+        #save
+        save_button = QPushButton()
+        save_button.setText('Save')
+        save_button.setFixedSize(127, 35)
+        #delete
+        delete_button = QPushButton()
+        delete_button.setText('delete')
+        delete_button.setFixedSize(126, 35)
+        #save as csv
+        save_as_csv_button = QPushButton()
+        save_as_csv_button.setText('Save as csv')
+        save_as_csv_button.setFixedSize(127, 35)
+        
+        #Here are vertical and horizontal layout
+        #vertical
+        layout_v = QVBoxLayout()
+        layout_v.setSpacing(5)
+        layout_v.setContentsMargins(5, 0, 0, 0)
+        layout_v.addWidget(name_box)
+        layout_v.addWidget(priority_box)
+        layout_v.addWidget(description_box)
+        #horizontal
+        layout_h = QHBoxLayout()
+        layout_h.setSpacing(2)
+        layout_h.setContentsMargins(0, 0, 0, 0)
+        layout_h.addWidget(save_button)
+        layout_h.addWidget(delete_button)
+        layout_h.addWidget(save_as_csv_button)
+        
+        layout_v.addLayout(layout_h)
+        layout_v.addStretch()
+        self.setLayout(layout_v)
         
         self.show()
         
