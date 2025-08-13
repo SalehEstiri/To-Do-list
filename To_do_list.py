@@ -1,5 +1,6 @@
 import pandas
 from pydantic import BaseModel
+from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QPushButton
 
 class Task(BaseModel):
     name: str
