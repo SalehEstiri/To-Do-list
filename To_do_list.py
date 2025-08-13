@@ -2,6 +2,7 @@ import pandas
 import sys
 from pydantic import BaseModel
 from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QPushButton
+from PyQt6.QtCore import QSize
 
 class Task(BaseModel):
     name: str
@@ -34,7 +35,30 @@ class GUI(QWidget):
         super().__init__(*args, **kwargs)
         
         self.setWindowTitle('TO DO LIST')
-        self.setGeometry(680, 360, 200, 100)
+        self.setGeometry(680, 360, 400, 500)
+        
+        #Here are three boxes to get task name, discreption and priority from user.
+        #name
+        name_box = QLineEdit()
+        name_box.setPlaceholderText('Task name')
+        name_box.setClearButtonEnabled(True)
+        name_box.setFixedSize(QSize(390, 50))
+        #dicreption
+        discreption_box = QLineEdit()
+        discreption_box.setPlaceholderText('Task discription')
+        discreption_box.setClearButtonEnabled(True)
+        discreption_box.setFixedSize(QSize(390, 50))
+        #priority
+        priority_box = QLineEdit()
+        priority_box.setPlaceholderText('Task priority')
+        priority_box.setFixedSize(QSize(390, 200))
+        priority_box.setClearButtonEnabled(True)
+        
+        layout = QVBoxLayout()
+        layout.addWidget(name_box)
+        layout.addWidget(discreption_box)
+        layout.addWidget(priority_box)
+        self.setLayout(layout)
         
         self.show()
         
