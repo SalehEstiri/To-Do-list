@@ -35,19 +35,19 @@ class GUI(QWidget):
         super().__init__(*args, **kwargs)
         
         self.setWindowTitle('TO DO LIST')
-        self.setGeometry(680, 360, 400, 500)
+        self.setGeometry(680, 300, 400, 500)
         
         #Here are three boxes to get task name, discreption and priority from user.
         #name
         name_box = QLineEdit()
         name_box.setPlaceholderText('Task name')
         name_box.setClearButtonEnabled(True)
-        name_box.setFixedSize(QSize(390, 50))
+        name_box.setFixedSize(QSize(390, 40))
         #dicreption
         discreption_box = QLineEdit()
         discreption_box.setPlaceholderText('Task discription')
         discreption_box.setClearButtonEnabled(True)
-        discreption_box.setFixedSize(QSize(390, 50))
+        discreption_box.setFixedSize(QSize(390, 40))
         #priority
         priority_box = QLineEdit()
         priority_box.setPlaceholderText('Task priority')
@@ -58,6 +58,7 @@ class GUI(QWidget):
         layout.addWidget(name_box)
         layout.addWidget(discreption_box)
         layout.addWidget(priority_box)
+        layout.addStretch()
         self.setLayout(layout)
         
         self.show()
