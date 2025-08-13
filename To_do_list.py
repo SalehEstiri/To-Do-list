@@ -25,7 +25,7 @@ class ToDoList:
             print(task.description)
             print('-------------------------')
         
-    def save_to_csv(self):
+    def save_as_csv(self):
         task_dict = [task.dict() for task in self.tasks]
         df = pandas.DataFrame(task_dict)
         df.to_csv('Lists.csv', index= False)
