@@ -1,4 +1,5 @@
 import pandas
+import sys
 from pydantic import BaseModel
 from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout, QPushButton
 
@@ -27,3 +28,17 @@ class ToDoList:
         task_dict = [task.dict() for task in self.tasks]
         df = pandas.DataFrame(task_dict)
         df.to_csv('Lists.csv', index= False)
+        
+class GUI(QWidget):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.setWindowTitle('TO DO LIST')
+        self.setGeometry(680, 360, 200, 100)
+        
+        self.show()
+        
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = GUI()
+    sys.exit(app.exec())
