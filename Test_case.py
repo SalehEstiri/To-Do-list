@@ -22,7 +22,7 @@ class TestToDoList(unittest.TestCase):
         self.assertEqual(self.to_do_list.tasks[2].name, "Exam")
       
     def test_save_to_csv(self):
-        self.to_do_list.save_to_csv()
+        self.to_do_list.save_as_csv()
         self.assertTrue(os.path.exists('Lists.csv'))
         
         df = pd.read_csv('Lists.csv')
