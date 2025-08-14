@@ -1,7 +1,7 @@
 # To Do List Application
 
 ## Overview
-This is a simple command-line To Do List application written in Python. It allows users to manage tasks with names, descriptions, and priorities, save them to a CSV file, and display them sorted by priority.
+This is a simple desktop app To Do List application written in Python. It allows users to manage tasks with names, descriptions, and priorities, save them to a CSV file, and display them sorted by priority.
 
 ## Features
 - Create tasks with name, description, and priority
