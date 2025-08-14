@@ -69,6 +69,7 @@ class GUI(QWidget):
         save_as_csv_button = QPushButton()
         save_as_csv_button.setText('Save as csv')
         save_as_csv_button.setFixedSize(127, 35)
+        save_as_csv_button.clicked.connect(self.to_do_list.save_as_csv)
         
         #Here are vertical and horizontal layout
         #vertical
