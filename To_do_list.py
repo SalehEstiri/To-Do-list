@@ -1,7 +1,8 @@
 import pandas
 import sys
 from pydantic import BaseModel
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QVBoxLayout,QHBoxLayout, QPushButton
+from PyQt6.QtWidgets import (QApplication, QWidget, QLineEdit, QVBoxLayout,QHBoxLayout, QPushButton,
+                             QListWidget)
 
 class Task(BaseModel):
     name: str
@@ -48,7 +49,7 @@ class GUI(QWidget):
         self.description_box = QLineEdit()
         self.description_box.setPlaceholderText('Task discription')
         self.description_box.setClearButtonEnabled(True)
-        self.description_box.setFixedSize(390, 200)
+        self.description_box.setFixedSize(390, 145)
         #priority
         self.priority_box = QLineEdit()
         self.priority_box.setPlaceholderText('Task priority')
@@ -65,11 +66,15 @@ class GUI(QWidget):
         delete_button = QPushButton()
         delete_button.setText('delete')
         delete_button.setFixedSize(126, 35)
+        delete_button.clicked.connect(self.delete)
         #save as csv
         save_as_csv_button = QPushButton()
         save_as_csv_button.setText('Save as csv')
         save_as_csv_button.setFixedSize(127, 35)
         save_as_csv_button.clicked.connect(self.to_do_list.save_as_csv)
+        
+        self.list_task = QListWidget()
+        self.list_task.setFixedSize(390, 200)
         
         #Here are vertical and horizontal layout
         #vertical
@@ -88,10 +93,25 @@ class GUI(QWidget):
         layout_h.addWidget(save_as_csv_button)
         
         layout_v.addLayout(layout_h)
+        layout_v.addWidget(self.list_task)
         layout_v.addStretch()
         self.setLayout(layout_v)
         
         self.show()
+    
+    def delete(self):
+        selected_items = self.list_task.selectedItems()
+        if not selected_items:
+            return
+        for item in selected_items:
+            text = item.text()
+            try:
+                name_part = text.split('- ', 1)[1]
+                name = name_part.split(':', 1)[0].strip()
+                self.to_do_list.delete(name)
+                self.list_task.takeItem(self.list_task.row(item))
+            except Exception as e:
+                print(f"Error deleting task: {e}")
         
     def save(self):
         try:
@@ -102,6 +122,7 @@ class GUI(QWidget):
             if name and priority:
                 t = Task(name= name, description= description, priority= priority)
                 self.to_do_list.tasks.append(t)
+                self.list_task.addItem(f'{t.priority}- {t.name}: {t.description}')
                 self.to_do_list.show()
                 
                 self.name_box.clear()
